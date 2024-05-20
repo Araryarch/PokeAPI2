@@ -1,19 +1,47 @@
 const fetchAPI = async () => {
-  const response = await fetch("https://pokeapi.co/api/v2/pokemon/pikachu")
-  const data = await response.json()
+  try {
+    const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=36")
+    const data = await response.json()
 
-  const card = document.querySelector(".card")
-  card.style.display = "flex"
-  const cardName = document.querySelector(".name")
-  const cardImage = document.querySelector(".image")
-  const cardType = document.querySelector(".type")
+    const cardsContainer = document.querySelector(".card-wrapper")
+    cardsContainer.innerHTML = ""
 
-  const number = data.id
-  const name = data.name
-  const image = data.sprites.front_default
-  const type = data.types[0].type.name
+    for (const pokemon of data.results) {
+      const pokemonResponse = await fetch(pokemon.url)
+      const pokemonData = await pokemonResponse.json()
 
-  cardName.textContent = number + ": " + name
-  cardImage.src = image
-  cardType.textContent = "Type:" + " " + type
+      const card = document.createElement("div")
+      card.classList.add("card")
+
+      const cardName = document.createElement("div")
+      cardName.classList.add("name")
+      cardName.textContent = pokemonData.name
+
+      const cardImage = document.createElement("img")
+      cardImage.classList.add("image")
+      cardImage.src = pokemonData.sprites.front_default
+
+      const cardType = document.createElement("div")
+      cardType.classList.add("type")
+
+      const type = pokemonData.types.map((type) => type.type.name).join(", ")
+      const theme = type.split(", ")[0].toUpperCase()
+
+      card.classList.add(theme)
+      cardType.textContent = type
+
+      card.appendChild(cardName)
+      card.appendChild(cardImage)
+      card.appendChild(cardType)
+
+      cardsContainer.appendChild(card)
+    }
+
+    const cards = document.querySelectorAll(".card")
+    cards.forEach((card) => {
+      card.style.display = "flex"
+    })
+  } catch (error) {
+    console.error("Error fetching data:", error)
+  }
 }

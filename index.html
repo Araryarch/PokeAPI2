@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PokeAPI (1)</title>
+    <title>PokeAPI (2)</title>
     <style>
       .container {
         width: 100%;
@@ -13,6 +13,7 @@
         justify-content: center;
         align-items: center;
       }
+
       .card {
         margin: 10px;
         border-radius: 15px;
@@ -21,7 +22,8 @@
         aspect-ratio: 9/14;
         width: 300px;
 
-        display: none;
+        display: flex;
+        gap: 3rem;
         flex-direction: column;
         align-items: center;
         padding: 25px;
@@ -37,11 +39,112 @@
         border-radius: 10px;
         border: 1px solid black;
       }
+
       .btn:hover {
         padding: 1rem 2rem;
         background-color: #f5dc82;
         border-radius: 10px;
         border: 1px solid black;
+      }
+
+      .card-wrapper {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      img {
+        width: 250px;
+      }
+
+      .GRASS {
+        background-color: #8dd694;
+        border: 2px solid #5dad65;
+      }
+
+      .WATER {
+        background-color: #8dc6e6;
+        border: 2px solid #6f9eca;
+      }
+
+      .FIRE {
+        background-color: #e69d8d;
+        border: 2px solid #c67d6d;
+      }
+
+      .BUG {
+        background-color: #bddd7a;
+        border: 2px solid #a2c170;
+      }
+
+      .NORMAL {
+        background-color: #b1b1b1;
+        border: 2px solid #959595;
+      }
+
+      .FLYING {
+        background-color: #c9adec;
+        border: 2px solid #a485cc;
+      }
+
+      .ROCK {
+        background-color: #b99d72;
+        border: 2px solid #957059;
+      }
+
+      .GROUND {
+        background-color: #efbe85;
+        border: 2px solid #d0a068;
+      }
+
+      .PSYCHIC {
+        background-color: #d053bc;
+        border: 2px solid #a44094;
+      }
+
+      .GHOST {
+        background-color: #835694;
+        border: 2px solid #6b4c79;
+      }
+
+      .DARK {
+        background-color: #686868;
+        border: 2px solid #434343;
+      }
+
+      .STEEL {
+        background-color: #598fa3;
+        border: 2px solid #517c8b;
+      }
+
+      .POISON {
+        background-color: #a55db1;
+        border: 2px solid #ba4a95;
+      }
+
+      .ELECTRIC {
+        background-color: #e7c859;
+        border: 2px solid #d0b34a;
+      }
+
+      .FAIRY {
+        background-color: #eea1e2;
+        border: 2px solid #c77fbc;
+      }
+
+      .FIGHTING {
+        background-color: #e07f60;
+        border: 2px solid #b1664f;
+      }
+
+      .DRAGON {
+        background-color: #8859d5;
+        border: 2px solid #724cae;
+      }
+
+      .ICE {
+        background-color: #71d8de;
+        border: 2px solid #65c1c6;
       }
     </style>
   </head>
@@ -49,12 +152,7 @@
     <div class="container">
       <h1>Get Pokemon</h1>
       <button onclick="fetchAPI()" class="btn">Get</button>
-
-      <div class="card">
-        <div class="name"></div>
-        <img src="" alt="" class="image" width="300" />
-        <div class="type"></div>
-      </div>
+      <div class="card-wrapper"></div>
     </div>
     <script src="script.js"></script>
   </body>
